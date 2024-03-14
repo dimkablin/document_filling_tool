@@ -3,10 +3,10 @@ from typing import Any
 from fastapi import APIRouter
 from ..version import __version__
 
-base_router = APIRouter()
+router = APIRouter()
 
 
-@base_router.get("/version", response_model=str)
+@router.get("/version", response_model=str)
 async def version() -> Any:
     """Provide version information about the web service.
 
