@@ -1,2 +1,0 @@
-[run]
-omit = ./document_filling_tool/main.py,*/__init__.py
