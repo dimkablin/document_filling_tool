@@ -1,6 +1,7 @@
 """ FastAPI connection """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from .endpoints import base, data
 
 app = FastAPI(
@@ -22,3 +23,5 @@ app.add_middleware(
 )
 app.include_router(base.router, prefix="/api", tags=["base"])
 app.include_router(data.router, prefix="/api", tags=["data"])
+
+app.mount("/files", StaticFiles(directory="./src/data"), name="images")
