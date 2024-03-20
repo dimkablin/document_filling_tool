@@ -18,3 +18,8 @@ def create_excel_from_json(json_data: List[List[dict]]):
 def upload_files(chunk_id: int, files: List[UploadFile] = File(...)):
     """Uploading files to the server."""
     return Data.upload_files(chunk_id, files)
+
+@router.get("/get-chunk-id/", response_model=int)
+def get_chunk_id():
+    """Will return free chunk id"""
+    return Data.get_chunk_id()

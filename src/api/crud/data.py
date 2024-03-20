@@ -53,7 +53,7 @@ class Data:
                 f"page_{page.number}.png"
             )
             image.save(image_path)
-            paths.append(image_path[10:])
+            paths.append("/files"+image_path[10:])
 
         return paths
 
@@ -77,15 +77,24 @@ class Data:
             # сохраним файл в save_path
             with open(file_path, "wb") as wb_f:
                 wb_f.write(file.file.read())
-                paths.append(file_path[10:])
+                paths.append("/files"+file_path[10:])
 
             # если файл пдф, то конвертируем его в изображения
             if check_extension(filename, env.FILE_EXTENSIONS):
                 # выгрузим сканы в папку save_path
-                i_save_path = os.path.join(save_path, str(hash(file))[:10])
+                i_save_path = os.path.join(save_path, str(hash(file))[:20])
                 create_dir(i_save_path)
 
                 result = Data.pdf_to_images(file_path, i_save_path)
                 paths += result
 
         return paths
+    
+    @staticmethod
+    def get_chunk_id() -> int:
+        """Convert pdf to images"""
+
+        directory = env.DATA_PATH
+        folders = [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]
+
+        return len(folders) + 1
