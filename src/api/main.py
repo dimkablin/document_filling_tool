@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from .endpoints import base, data
+from .endpoints import base, data, ocr, speech2text
 
 app = FastAPI(
     title="Backend API",
@@ -23,5 +23,7 @@ app.add_middleware(
 )
 app.include_router(base.router, prefix="/api", tags=["base"])
 app.include_router(data.router, prefix="/api", tags=["data"])
+app.include_router(ocr.router, prefix="/api/ocr", tags=["ocr"])
+app.include_router(speech2text.router, prefix="/api/speech2text", tags=["speech2text"])
 
 app.mount("/files", StaticFiles(directory="./src/data"), name="images")
