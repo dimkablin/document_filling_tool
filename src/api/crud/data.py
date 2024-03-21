@@ -6,8 +6,8 @@ import warnings
 import pandas as pd
 from typing import List
 
-import env as env
-from api.utils.utils import create_dir, check_extension
+import src.env as env
+from src.api.utils.utils import create_dir, check_extension
 
 class Data:
     """Class for working with data"""

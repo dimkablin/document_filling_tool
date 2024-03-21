@@ -3,7 +3,7 @@
 import os
 from typing import List
 
-from env import DATA_PATH, project_dir
+from src.env import DATA_PATH, project_dir
 
 def get_abspath(*path):
     """ Get the absolute path from this file and add the argument path"""
