@@ -56,3 +56,6 @@ backup/*
 venv
 
 !.keep
+
+# data
+src/data

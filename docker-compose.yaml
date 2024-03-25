@@ -1,24 +1,27 @@
 version: '3'
 services:
-
+  
   document_filling_tool:
-    container_name: document_filling_tool
     image: mountu00/document_filling_tool
-    volumes:
-      - "./src:/document_filling_tool/src"
     ports:
       - "8005:8000"
     env_file:
       - .env
 
   ocr_factory:
-    container_name: ocr_factory
     image: dimkablin/ocr_factory
     ports:
       - "8000:8000"
 
   speech2text:
-    container_name: speech2text
     image: dimkablin/speech2text_factory
     ports:
       - "8001:8000"
+
+  web:
+    image: fa4stik/workbooks_web
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+      - "443:443"
