@@ -53,7 +53,7 @@ class Data:
                 f"page_{page.number}.png"
             )
             image.save(image_path)
-            paths.append("/files"+image_path[10:])
+            paths.append("/api/files"+image_path[10:])
 
         return paths
 
@@ -77,7 +77,7 @@ class Data:
             # сохраним файл в save_path
             with open(file_path, "wb") as wb_f:
                 wb_f.write(file.file.read())
-                paths.append("/files"+file_path[10:])
+                paths.append("/api/files"+file_path[10:])
 
             # если файл пдф, то конвертируем его в изображения
             if check_extension(filename, env.FILE_EXTENSIONS):
