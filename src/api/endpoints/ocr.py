@@ -38,10 +38,10 @@ async def predict(image: UploadFile) -> OCRResultModel:
         return response.json()
 
 
-@router.get("/change-model")
+@router.post("/change-model")
 async def change_model(model_name: str):
     """Change the model"""
     session = requests.Session()
     session.trust_env = False
-    response = session.get(f"{OCR_URL}/change-model?model_name={model_name}")
+    response = session.post(f"{OCR_URL}/change-model?model_name={model_name}")
     return response.json()

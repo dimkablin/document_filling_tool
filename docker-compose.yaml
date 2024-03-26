@@ -7,16 +7,37 @@ services:
       - "8005:8000"
     env_file:
       - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   ocr_factory:
     image: dimkablin/ocr_factory
     ports:
       - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   speech2text:
     image: dimkablin/speech2text_factory
     ports:
       - "8001:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
   web:
     image: fa4stik/workbooks_web

@@ -45,11 +45,11 @@ async def get_model_config(model_name: str):
     return JSONResponse(status_code=response.status_code, content=response.json())
 
 
-@router.get("/change-model")
+@router.post("/change-model")
 async def change_model(model_name: str, config: dict):
     """Redirects request to change the model."""
     session = requests.Session()
     session.trust_env = False
-    response = session.get(f"{SPEECH2TEXT_URL}/change-model?model_name={model_name}", json=config)
+    response = session.post(f"{SPEECH2TEXT_URL}/change-model?model_name={model_name}", json=config)
     return JSONResponse(status_code=response.status_code, content=response.json())
  
