@@ -26,4 +26,4 @@ app.include_router(data.router, prefix="/api", tags=["data"])
 app.include_router(ocr.router, prefix="/api/ocr", tags=["ocr"])
 app.include_router(speech2text.router, prefix="/api/speech2text", tags=["speech2text"])
 
-app.mount("/api/files", StaticFiles(directory="./src/data"), name="images")
+app.mount("/files", StaticFiles(directory="./src/data"), name="images")

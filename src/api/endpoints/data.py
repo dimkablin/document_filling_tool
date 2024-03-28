@@ -2,7 +2,7 @@
 from typing import List
 from fastapi import APIRouter, File, UploadFile
 from fastapi.responses import FileResponse
-from ..crud.data import Data
+from src.api.crud.data import Data
 
 router = APIRouter()
 

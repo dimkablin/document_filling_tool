@@ -1,5 +1,5 @@
 """Speech2text Router redirecting"""
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, HTTPException, UploadFile
 from fastapi.responses import JSONResponse
 import requests
 from src.env import SPEECH2TEXT_URL
@@ -50,6 +50,10 @@ async def change_model(model_name: str, config: dict):
     """Redirects request to change the model."""
     session = requests.Session()
     session.trust_env = False
-    response = session.post(f"{SPEECH2TEXT_URL}/change-model?model_name={model_name}", json=config)
-    return JSONResponse(status_code=response.status_code, content=response.json())
+    try:
+        response = session.post(f"{SPEECH2TEXT_URL}/change-model/?model_name={model_name}", json=config)
+        response.raise_for_status()
+        return JSONResponse(status_code=response.status_code, content=response.json())
+    except requests.RequestException as e:
+        raise HTTPException(status_code=500, detail=str(e))
  
