@@ -41,7 +41,7 @@ async def get_model_config(model_name: str):
     """Redirects request to get model configuration."""
     session = requests.Session()
     session.trust_env = False
-    response = session.get(f"{SPEECH2TEXT_URL}/get-config?model_name={model_name}")
+    response = session.get(f"{SPEECH2TEXT_URL}/get-model-config?model_name={model_name}")
     return JSONResponse(status_code=response.status_code, content=response.json())
 
 
