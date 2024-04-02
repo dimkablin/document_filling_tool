@@ -7,6 +7,8 @@ services:
       - "8005:8000"
     env_file:
       - .env
+    volumes:
+      - "/mnt/c/1tatneft_projects/document_filling_tool/src:/document_filling_tool/src"
     # deploy:
     #   resources:
     #     reservations:
@@ -19,6 +21,8 @@ services:
     image: dimkablin/ocr_factory
     ports:
       - "8000:8000"
+    # volumes:
+    #   - "/mnt/c/1tatneft_projects/ocr_factory/src:/app/src"
     # deploy:
     #   resources:
     #     reservations:
@@ -31,6 +35,8 @@ services:
     image: dimkablin/speech2text_factory
     ports:
       - "8001:8000"
+    volumes:
+      - "/mnt/c/1tatneft_projects/speech2text_factory/src:/app/src"
     # deploy:
     #   resources:
     #     reservations:

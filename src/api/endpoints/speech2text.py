@@ -25,6 +25,13 @@ async def get_current_model():
     response = session.get(f"{SPEECH2TEXT_URL}/get-current-model")
     return JSONResponse(status_code=response.status_code, content=response.json())
 
+@router.get("/get-current-config")
+async def get_current_config():
+    """Redirects request to get current model."""
+    session = requests.Session()
+    session.trust_env = False
+    response = session.get(f"{SPEECH2TEXT_URL}/get-current-config")
+    return JSONResponse(status_code=response.status_code, content=response.json())
 
 @router.post("/predict")
 async def predict(audio: UploadFile = File(...)):
@@ -35,15 +42,13 @@ async def predict(audio: UploadFile = File(...)):
     response = session.post(f"{SPEECH2TEXT_URL}/speech-to-text", files=files)
     return JSONResponse(status_code=response.status_code, content=response.json())
 
-
 @router.get("/get-model-config")
 async def get_model_config(model_name: str):
     """Redirects request to get model configuration."""
     session = requests.Session()
     session.trust_env = False
-    response = session.get(f"{SPEECH2TEXT_URL}/get-model-config?model_name={model_name}")
+    response = session.get(f"{SPEECH2TEXT_URL}/get-config?model_name={model_name}")
     return JSONResponse(status_code=response.status_code, content=response.json())
-
 
 @router.post("/change-model")
 async def change_model(model_name: str, config: dict):
