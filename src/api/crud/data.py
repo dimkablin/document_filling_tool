@@ -25,7 +25,8 @@ class Data:
                 row = {}
                 for key, value in entry.items():
                     content = value.get('content', '')
-                    row[key] = content
+                    name = value.get('name', '')
+                    row[name] = content
                 data.append(row)
             df = pd.DataFrame(data)
             df_list.append(df)
