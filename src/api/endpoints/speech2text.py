@@ -56,7 +56,7 @@ async def change_model(model_name: str, config: dict):
     session = requests.Session()
     session.trust_env = False
     try:
-        response = session.post(f"{SPEECH2TEXT_URL}/change-model/?model_name={model_name}", json=config)
+        response = session.post(f"{SPEECH2TEXT_URL}/change-model?model_name={model_name}", json=config)
         response.raise_for_status()
         return JSONResponse(status_code=response.status_code, content=response.json())
     except requests.RequestException as e:

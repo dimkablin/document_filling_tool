@@ -24,7 +24,7 @@ def remove_file(file_path: str):
     """Remove file by filepath"""
     return Data.remove_file(file_path)
 
-@router.get("/get-chunk-id/", response_model=int)
+@router.get("/get-chunk-id", response_model=int)
 def get_chunk_id():
     """Will return free chunk id"""
     return Data.get_chunk_id()
